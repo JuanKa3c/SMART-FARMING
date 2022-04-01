@@ -41,7 +41,7 @@ int Porcentaje_Humedad_Suelo= map(Humedad_Suelo, HUMEDO, SECO, 100, 0);
   Serial.print("Porcentaje de Humedad Suelo: "); //Monitor
   Serial.println(Porcentaje_Humedad_Suelo);
   
-if (temp >= 26){              //Condicional para activar salida
+if (temp >21 && temp < 24){              //Condicional para activar salida
     digitalWrite(pinOut, HIGH);
   }
   else {
@@ -70,5 +70,5 @@ if (temp >= 26){              //Condicional para activar salida
   lcd.print(Porcentaje_Humedad_Suelo);
   lcd.setCursor(14,1); 
   lcd.print("%");
-  delay(400);
+  delay(200);
 }
