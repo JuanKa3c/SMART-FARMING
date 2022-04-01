@@ -38,7 +38,7 @@ void loop(){
   humedad = dht.readHumidity(); //humedad del sensor
   temp = dht.readTemperature(); //Temperatura del sensor
   Humedad_Suelo = analogRead(A0); //Humedad de suelo SENSOR 109
-  lux = sensor.readLightLevel(); //Luminosidad del sensor BH1750
+  lux = sensor.readLightLevel(A1); //Luminosidad del sensor BH1750
 
 
 //DH22 Sensor de temperatura y humedad ambiente
@@ -70,13 +70,13 @@ int Porcentaje_Humedad_Suelo= map(Humedad_Suelo, HUMEDO, SECO, 100, 0);
 
   
 //CONDICIONALES  
-if (temp >= 26){              //Condicional para activar salida de bomba de agua
+if (temp >21 && temp < 24){              //Condicional para activar salida de bomba de agua
     digitalWrite(pinOut_3, HIGH);
   }
   else {
     digitalWrite(pinOut_3, LOW);
   }
-if (lux <= 10){              //Condicional para activar salida de LUZ
+if (lux <= 10 && lux >=50){              //Condicional para activar salida de LUZ
     digitalWrite(pinOut_4, HIGH);
   }
   else {
@@ -91,11 +91,11 @@ if (lux <= 10){              //Condicional para activar salida de LUZ
   lcd.setCursor(2,0); 
   lcd.print(temp);
   lcd.setCursor(7,0); 
-  lcd.print("C");
+  lcd.print(" C");
   //LCD impresion de luminosidad
-  lcd.setCursor(9,0);
+  lcd.setCursor(10,0);
   lcd.print("L: ");
-  lcd.setCursor(11,0);
+  lcd.setCursor(12,0);
   lcd.print(lux);
   //LCD impresion humedad DHT22
   lcd.setCursor(0,1); 
@@ -111,5 +111,5 @@ if (lux <= 10){              //Condicional para activar salida de LUZ
   lcd.print(Porcentaje_Humedad_Suelo);
   lcd.setCursor(14,1); 
   lcd.print("%");
-  delay(400);
+  delay(200);
 }
